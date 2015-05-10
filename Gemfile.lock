@@ -1,0 +1,32 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ansi (1.5.0)
+    dotenv (2.0.1)
+    hashie (3.4.1)
+    itamae (1.2.16)
+      ansi
+      hashie
+      schash (~> 0.1.0)
+      specinfra (>= 2.31.0, < 3.0.0)
+      thor
+    itamae-plugin-recipe-selinux (0.0.5)
+      itamae
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
+    rake (10.4.2)
+    schash (0.1.1)
+    specinfra (2.31.0)
+      net-scp
+      net-ssh
+    thor (0.19.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  dotenv
+  itamae
+  itamae-plugin-recipe-selinux
+  rake
