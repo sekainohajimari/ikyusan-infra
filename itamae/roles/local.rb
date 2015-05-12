@@ -3,6 +3,7 @@ include_recipe 'selinux::disabled'
 %w(
   mysql
   ruby_build
+  nokogiri-env
   nginx
   tz
 ).each do |recipe|

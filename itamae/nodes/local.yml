@@ -4,4 +4,4 @@ rbenv:
     - 2.2.2
   global: 2.2.2
   gems:
-    - bundler
+    - name: bundler
