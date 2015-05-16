@@ -2,6 +2,7 @@
 %w(
 epel-release
 gcc
+gcc-c++
 openssl-devel
 libyaml-devel
 readline-devel
