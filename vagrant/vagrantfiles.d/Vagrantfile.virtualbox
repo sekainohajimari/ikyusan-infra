@@ -1,0 +1,29 @@
+# for VirtualBox Vagrantfile
+# USAGE
+#  $ vagrant up OR vagrant up local
+# ----------------------------------
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  user = 'vagrant'
+  private_network = '192.168.33.10'
+  box_name = 'centos-7.0'
+  box_url = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.0_chef-provisionerless.box'
+
+  config.vm.define :local do |local|
+    local.ssh.insert_key = false
+    local.vm.box             = box_name
+    local.vm.box_url         = box_url
+    local.ssh.forward_agent  = true
+    local.ssh.username       = user
+    local.vm.network         "private_network", ip: "#{private_network}"
+    local.vm.network         "forwarded_port", guest: 80, host: 80
+    local.vm.network         "forwarded_port", guest: 443, host: 443
+    local.vm.synced_folder   "./www", "/var/www", create: true, type: "nfs"
+
+    local.vm.provider :virtualbox do |vb, override|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+    end
+
+    # provisioningはItamaeでやる
+  end
+end

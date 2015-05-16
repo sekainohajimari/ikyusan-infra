@@ -1,5 +1,5 @@
 # rbenv,rb_buildに必要なパッケージをインストールする
-%w{
+%w(
 epel-release
 gcc
 openssl-devel
@@ -7,7 +7,7 @@ libyaml-devel
 readline-devel
 zlib-devel
 git
-}.each do |package_name|
+).each do |package_name|
   package package_name
 end
 
@@ -15,13 +15,19 @@ RBENV_DIR = "/usr/local/rbenv"
 RBENV_SCRIPT = "/etc/profile.d/rbenv.sh"
 
 git RBENV_DIR do
-  repository "git://github.com/sstephenson/rbenv.git"
+  repository "https://github.com/sstephenson/rbenv.git"
+end
+
+directory "#{RBENV_DIR}/shims" do
+  not_if "test -d #{RBENV_DIR}/shims"
+end
+
+directory "#{RBENV_DIR}/versions" do
+  not_if "test -d #{RBENV_DIR}/versions"
 end
 
 remote_file RBENV_SCRIPT do
-  owner "root"
-  group "root"
-  mode "644"
+  mode '0644'
   source "remote_files/rbenv.sh"
 end
 
@@ -30,7 +36,7 @@ directory "#{RBENV_DIR}/plugins" do
 end
 
 git "#{RBENV_DIR}/plugins/ruby-build" do
-  repository "git://github.com/sstephenson/ruby-build.git"
+  repository "https://github.com/sstephenson/ruby-build.git"
 end
 
 node[:rbenv][:versions].each do |versoin|
