@@ -1,11 +1,11 @@
 upstream unicorn {
-  server unix:/tmp/unicorn.ikyusan.sock fail_timeout=0;
+  server unix:<%= node[:nginx][:unicorn_sock] %> fail_timeout=0;
 }
 
 server {
-    listen       80;
-    server_name  localhost;
-    root   /var/www;
+    listen <%= node[:nginx][:port] %>;
+    server_name <%= node[:nginx][:server_name] %>;
+    root <%= node[:nginx][:document_root] %>;
     try_files $uri @unicorn;
 
     location @unicorn {

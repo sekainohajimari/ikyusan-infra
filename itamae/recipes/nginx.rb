@@ -1,13 +1,20 @@
 package "nginx"
 
-remote_file "/etc/nginx/conf.d/ikyusan.conf" do
+template "/etc/nginx/conf.d/#{node[:nginx][:application]}.conf" do
   owner "root"
   group "root"
-  source "remote_files/ikyusan.conf"
+  mode "644"
+  source "templates/#{node[:nginx][:site_conf_template]}"
   notifies :reload, "service[nginx]"
 end
 
 service "nginx" do
-  action :start
-  not_if "pgrep nginx"
+  action ["enable", "start"]
+end
+
+directory node[:nginx][:document_root] do
+  owner node[:nginx][:document_root_user]
+  group node[:nginx][:document_root_user]
+  mode "775"
+  not_if "test -d #{node[:nginx][:document_root]}"
 end

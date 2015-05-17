@@ -1,13 +1,13 @@
 # rbenv,rb_buildに必要なパッケージをインストールする
 %w(
-epel-release
-gcc
-gcc-c++
-openssl-devel
-libyaml-devel
-readline-devel
-zlib-devel
-git
+  epel-release
+  gcc
+  gcc-c++
+  openssl-devel
+  libyaml-devel
+  readline-devel
+  zlib-devel
+  git
 ).each do |package_name|
   package package_name
 end

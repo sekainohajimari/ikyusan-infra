@@ -1,6 +1,6 @@
 %w(
-libxml2-devel
-libxslt-devel
+  libxml2-devel
+  libxslt-devel
 ).each do |package_name|
   package package_name
 end
