@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOST=ec2-52-68-144-180.ap-northeast-1.compute.amazonaws.com
+HOST=$IKYUSAN_HOST
 USER=kyoko
 
-bundle exec itamae ssh -h $HOST -u $USER itamae/roles/production.rb -y itamae/nodes/production.yml -i ~/.ssh/sekahama.pem
+bundle exec itamae ssh -h $HOST -u $USER itamae/roles/production.rb -y itamae/nodes/production.yml -i ~/.ssh/kyoko.pem

@@ -2,3 +2,4 @@
 .bundle
 /vagrant/.vagrant
 /vagrant/www
+./env
