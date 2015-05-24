@@ -1,4 +1,4 @@
-user: vagrant
+user: kyoko
 tz: jst
 rbenv:
   versions:
@@ -9,8 +9,8 @@ rbenv:
 nginx:
   site_conf_template: ikyusan-api.conf.erb
   document_root: /var/www
-  document_root_user: vagrant
+  document_root_user: ec2-user
   application: ikyusan-api
-  server_name: 192.168.33.10
+  server_name: localhost
   port: 80
   unicorn_sock: /var/www/ikyusan-api/current/tmp/sockets/ikyusan-api_unicorn.sock

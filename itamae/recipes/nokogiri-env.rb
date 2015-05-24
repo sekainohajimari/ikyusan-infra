@@ -8,7 +8,7 @@ end
 RBENV_SCRIPT = "/etc/profile.d/rbenv.sh"
 
 execute "modify bundle config for nokogiri" do
-  user 'vagrant'
+  user node[:user]
   command <<-EOS
   source #{RBENV_SCRIPT}
   bundle config build.nokogiri --use-system-libraries
