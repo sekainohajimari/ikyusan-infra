@@ -4,7 +4,6 @@ template "/etc/nginx/conf.d/#{node[:nginx][:application]}.conf" do
   owner "root"
   group "root"
   mode "644"
-  source "templates/#{node[:nginx][:site_conf_template]}"
   notifies :reload, "service[nginx]"
 end
 
