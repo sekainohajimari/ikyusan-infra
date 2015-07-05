@@ -1,3 +1,6 @@
+require 'dotenv'
+Dotenv.load
+
 include_recipe 'selinux::disabled'
 
 %w(
@@ -7,5 +10,5 @@ include_recipe 'selinux::disabled'
   nginx
   tz
 ).each do |recipe|
-  include_recipe "../recipes/#{recipe}.rb"
+  include_recipe "../cookbooks/#{recipe}/default.rb"
 end
