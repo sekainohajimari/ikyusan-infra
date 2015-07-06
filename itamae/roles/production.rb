@@ -6,6 +6,7 @@ Dotenv.load
   nokogiri-env
   nginx
   tz
+  mackerel
 ).each do |recipe|
   include_recipe "../cookbooks/#{recipe}/default.rb"
 end
