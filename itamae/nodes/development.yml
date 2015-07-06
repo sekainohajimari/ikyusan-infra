@@ -1,3 +1,4 @@
+env: development
 user: vagrant
 tz: jst
 rbenv:

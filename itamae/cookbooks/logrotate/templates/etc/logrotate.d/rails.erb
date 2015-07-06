@@ -5,8 +5,12 @@
   compress
   notifempty
   copytruncate
+  dateext
   create 0644 <%= node[:nginx][:document_root_user] %> <%= node[:nginx][:document_root_user] %>
-  su root root
+  <% if node[:env] == 'development' %>
+    # Note: CentOS7とかだとpermisssionの制約が強くなって以下が必要
+    su root root
+  <% end %>
 
   lastaction
     pid=<%= node[:nginx][:unicorn_sock] %>
