@@ -14,3 +14,6 @@ nginx:
   server_name: ikyusan.sekahama.club
   port: 80
   unicorn_sock: /var/www/ikyusan-api/current/tmp/sockets/ikyusan-api_unicorn.sock
+logrotate:
+  app_log_dir: /var/www/ikyusan-api/shared/log
+  rotate: 1

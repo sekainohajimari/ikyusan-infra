@@ -7,6 +7,7 @@ Dotenv.load
   nginx
   tz
   mackerel
+  logrotate
 ).each do |recipe|
   include_recipe "../cookbooks/#{recipe}/default.rb"
 end

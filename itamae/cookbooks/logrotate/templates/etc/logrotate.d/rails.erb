@@ -1,0 +1,15 @@
+<%= node[:logrotate][:app_log_dir] %>/*log {
+  weekly
+  rotate <%= node[:logrotate][:rotate] %>
+  missingok
+  compress
+  notifempty
+  copytruncate
+  create 0644 <%= node[:nginx][:document_root_user] %> <%= node[:nginx][:document_root_user] %>
+  su root root
+
+  lastaction
+    pid=<%= node[:nginx][:unicorn_sock] %>
+    test -s $pid && kill -USR1 "$(cat $pid)"
+  endscript
+}

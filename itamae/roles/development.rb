@@ -9,6 +9,7 @@ include_recipe 'selinux::disabled'
   nokogiri-env
   nginx
   tz
+  logrotate
 ).each do |recipe|
   include_recipe "../cookbooks/#{recipe}/default.rb"
 end
