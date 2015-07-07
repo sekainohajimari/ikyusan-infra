@@ -1,10 +1,31 @@
 package "nginx"
 
-template "/etc/nginx/conf.d/#{node[:nginx][:application]}.conf" do
+directory "/etc/nginx/sites-enabled" do
+  owner "root"
+  group "root"
+  mode "755"
+  not_if "test -d /etc/nginx/sites-enabled/"
+end
+
+template "/etc/nginx/sites-enabled/ikyusan.sekahama.club" do
   owner "root"
   group "root"
   mode "644"
-  notifies :reload, "service[nginx]"
+  notifies :reload, "service[nginx]", :delay
+end
+
+remote_file "/etc/nginx/nginx.conf" do
+  owner "root"
+  group "root"
+  mode "644"
+  notifies :reload, "service[nginx]", :delay
+end
+
+remote_file "/etc/nginx/conf.d/log_format.conf" do
+  owner "root"
+  group "root"
+  mode "644"
+  notifies :reload, "service[nginx]", :delay
 end
 
 service "nginx" do

@@ -28,7 +28,7 @@ directory "#{RBENV_DIR}/versions" do
 end
 
 remote_file RBENV_SCRIPT do
-  mode '0644'
+  mode '644'
   # source "remote_files/rbenv.sh"
 end
 
