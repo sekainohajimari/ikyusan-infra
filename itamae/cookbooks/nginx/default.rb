@@ -4,7 +4,7 @@ directory "/etc/nginx/sites-enabled" do
   owner "root"
   group "root"
   mode "755"
-  not_if "test -d /etc/nginx/sites-enabled/"
+  not_if "test -d /etc/nginx/sites-enabled"
 end
 
 template "/etc/nginx/sites-enabled/ikyusan.sekahama.club" do
@@ -37,4 +37,10 @@ directory node[:nginx][:document_root] do
   group node[:nginx][:document_root_user]
   mode "775"
   not_if "test -d #{node[:nginx][:document_root]}"
+end
+
+error_res_json = "#{node[:nginx][:document_root]}/50x.json"
+execute "create 50x error responce json" do
+  command "echo {\"message\":\"Internal server errror\"} >> #{error_res_json}"
+  not_if "test -e #{error_res_json}"
 end

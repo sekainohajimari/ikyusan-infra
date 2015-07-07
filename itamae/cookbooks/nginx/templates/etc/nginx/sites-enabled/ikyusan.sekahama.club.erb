@@ -21,6 +21,7 @@ server {
       proxy_read_timeout    600;
       proxy_send_timeout    600;
     }
+
     # エラーは500.htmlを表示させる
-    error_page 500 502 503 504 /500.html;
+    error_page 500 502 503 504 /50x.json;
 }
