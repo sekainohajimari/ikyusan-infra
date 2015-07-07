@@ -1,4 +1,8 @@
 env: development
+recipes:
+  - web
+  - db
+  - security
 user: vagrant
 tz: jst
 rbenv:

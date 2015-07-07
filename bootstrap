@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bundle exec itamae ssh -h 192.168.33.10 --vagrant itamae/roles/development.rb -y itamae/nodes/development.yml
+bundle exec itamae ssh -h 192.168.33.10 --vagrant itamae/entrypoint.rb -y itamae/nodes/development.yml

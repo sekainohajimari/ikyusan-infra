@@ -1,4 +1,7 @@
 env: production
+recipes:
+  - web
+  - monitor
 user: kyoko
 tz: jst
 rbenv:

@@ -1,10 +1,4 @@
-require 'dotenv'
-Dotenv.load
-
-include_recipe 'selinux::disabled'
-
 %w(
-  mysql
   ruby_build
   nokogiri-env
   nginx
