@@ -15,6 +15,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
+    parallel (1.6.0)
     rake (10.4.2)
     schash (0.1.1)
     specinfra (2.31.0)
@@ -29,4 +30,5 @@ DEPENDENCIES
   dotenv
   itamae
   itamae-plugin-recipe-selinux
+  parallel
   rake

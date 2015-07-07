@@ -3,3 +3,4 @@
 /vagrant/.vagrant
 /vagrant/www
 .env
+.env.*
