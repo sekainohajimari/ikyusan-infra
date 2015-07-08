@@ -1,10 +1,10 @@
 namespace :provisioning do
-  desc "Run provisioning apply"
+  desc "Run provisioning apply. Ex: INFRA_ENV=development rake provisioning:apply"
   task :apply do
     bootstrap
   end
 
-  desc "Run provisioning drurun"
+  desc "Run provisioning drurun. Ex: INFRA_ENV=development rake provisioning:apply"
   task :dryrun do
     bootstrap(dryrun: true)
   end

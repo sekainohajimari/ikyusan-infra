@@ -1,6 +1,0 @@
-#!/bin/bash
-
-HOST=$IKYUSAN_HOST
-USER=kyoko
-
-bundle exec itamae ssh -h $HOST -u $USER itamae/entrypoint.rb -y itamae/nodes/production.yml -i ~/.ssh/kyoko.pem
