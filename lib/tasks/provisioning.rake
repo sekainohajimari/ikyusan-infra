@@ -1,37 +1,47 @@
 namespace :provisioning do
   desc "Run provisioning apply"
   task :apply do
-    infra_env = ENV['INFRA_ENV']
-    options = {
-      user: ENV['SSH_USER'],
-      ssh_key: ENV['SSH_KEY'],
-      target: "#{itamae_dir}/entrypoint.rb",
-      node: "#{itamae_dir}/nodes/#{infra_env}.yml"
-    }
-
-    case infra_env
-    when 'development'
-      development(options)
-    when 'production'
-      production(options)
-    end
+    bootstrap
   end
 
   desc "Run provisioning drurun"
   task :dryrun do
+    bootstrap(dryrun: true)
   end
 
-  def development(options = {})
+  def bootstrap(dryrun: false)
+    options = {
+      user: ENV['SSH_USER'],
+      ssh_key: ENV['SSH_KEY'],
+      target: "#{itamae_dir}/entrypoint.rb",
+      node: "#{itamae_dir}/nodes/#{ENV['INFRA_ENV']}.yml"
+    }
+
+    case ENV['INFRA_ENV']
+    when 'development'
+      development(options, dryrun: dryrun)
+    when 'production'
+      production(options, dryrun: dryrun)
+    end
+  end
+
+  def development(options = {}, dryrun: false)
     host = ENV['HOST']
 
-    sh "bundle exec itamae ssh -h #{host} -u #{options[:user]} #{options[:target]} -y #{options[:node]}"
+    command = "bundle exec itamae ssh -h #{host} -u #{options[:user]} #{options[:target]} -y #{options[:node]}"
+    command += ' -n' if dryrun
+
+    sh command
   end
 
-  def production(options = {})
+  def production(options = {}, dryrun: false)
     Parallel.each(ec2_hosts, in_threads: 2) do |host|
       puts "target host is #{host}"
 
-      sh "bundle exec itamae ssh -h #{host} -u #{options[:user]} #{options[:target]} -y #{options[:node]} -i #{options[:ssh_key]}"
+      command = "bundle exec itamae ssh -h #{host} -u #{options[:user]} #{options[:target]} -y #{options[:node]} -i #{options[:ssh_key]}"
+      command += ' -n' if dryrun
+
+      sh command
     end
   end
 
