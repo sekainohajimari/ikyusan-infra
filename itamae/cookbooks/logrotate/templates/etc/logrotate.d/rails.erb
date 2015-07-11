@@ -7,7 +7,7 @@
   copytruncate
   dateext
   create 0644 <%= node[:nginx][:document_root_user] %> <%= node[:nginx][:document_root_user] %>
-  <% if node[:env] == 'development' %>
+  <% if $infra_env == 'development' %>
     # Note: CentOS7とかだとpermisssionの制約が強くなって以下が必要
     su root root
   <% end %>

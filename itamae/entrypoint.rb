@@ -1,5 +1,4 @@
-require 'dotenv'
-Dotenv.load
+require_relative '../lib/global_setting.rb'
 
 node['recipes'] = node['recipes'] || []
 

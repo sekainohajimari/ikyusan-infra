@@ -13,7 +13,7 @@ end
 execute 'Setting mackerel config' do
   user 'root'
   command <<-EOS
-  echo apikey = "#{ENV['MACKEREL_API_KEY']}" >> /etc/mackerel-agent/mackerel-agent.conf
+  echo apikey = "#{Global.secret.mackerel.apikey}" >> /etc/mackerel-agent/mackerel-agent.conf
   EOS
   not_if "test -e /etc/mackerel-agent/mackerel-agent.conf"
   notifies :restart, "service[mackerel-agent]", :delay

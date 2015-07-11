@@ -11,13 +11,13 @@ namespace :provisioning do
 
   def bootstrap(dryrun: false)
     options = {
-      user: ENV['SSH_USER'],
-      ssh_key: ENV['SSH_KEY'],
+      user: Global.ssh.user,
+      ssh_key: Global.ssh.key,
       target: "#{itamae_dir}/entrypoint.rb",
-      node: "#{itamae_dir}/nodes/#{ENV['INFRA_ENV']}.yml"
+      node: "#{itamae_dir}/nodes/#{$infra_env}.yml"
     }
 
-    case ENV['INFRA_ENV']
+    case $infra_env
     when 'development'
       development(options, dryrun: dryrun)
     when 'production'
@@ -26,9 +26,7 @@ namespace :provisioning do
   end
 
   def development(options = {}, dryrun: false)
-    host = ENV['HOST']
-
-    command = "bundle exec itamae ssh -h #{host} -u #{options[:user]} #{options[:target]} -y #{options[:node]}"
+    command = "bundle exec itamae ssh -h #{Global.ssh.host} -u #{options[:user]} #{options[:target]} -y #{options[:node]}"
     command += ' -n' if dryrun
 
     sh command
@@ -51,8 +49,11 @@ namespace :provisioning do
 
   def ec2_hosts
     Aws.config[:ec2] = {
-      region: 'ap-northeast-1',
-      credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
+      region: Global.secret.aws.region,
+      credentials: Aws::Credentials.new(
+        Global.secret.aws.access_key_id,
+        Global.secret.aws.secret_access_key
+      )
     }
     ec2 = Aws::EC2::Client.new
 
@@ -61,7 +62,7 @@ namespace :provisioning do
         reservation.instances.each do |instance|
           is_target = true
           instance.tags.each do |tag|
-            if tag.key == 'Env' && tag.value != ENV['INFRA_ENV']
+            if tag.key == 'Env' && tag.value != $infra_env
               is_target = false
               break
             end

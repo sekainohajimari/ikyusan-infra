@@ -2,5 +2,7 @@
 .bundle
 /vagrant/.vagrant
 /vagrant/www
-.env
-.env.*
+/terraform/aws_provider.tf
+/terraform/terraform.tfstate
+/terraform/terraform.tfstate.backup
+/config/global/secret
