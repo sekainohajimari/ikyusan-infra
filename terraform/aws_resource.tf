@@ -15,10 +15,6 @@ resource "aws_instance" "web" {
       Name = "${var.name}"
       Env = "${var.env}"
     }
-    ebs_block_device = {
-      device_name = "/dev/xvda"
-      snapshot_id = "snap-18adf425"
-    }
     #provisioner "remote-exec" {
     #  inline = [
     #    "sudo yum update"
