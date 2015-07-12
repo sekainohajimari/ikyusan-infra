@@ -1,4 +1,5 @@
 %w(
+  env-variable
   ruby_build
   nokogiri-env
   nginx

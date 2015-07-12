@@ -29,7 +29,6 @@ end
 
 remote_file RBENV_SCRIPT do
   mode '644'
-  # source "remote_files/rbenv.sh"
 end
 
 directory "#{RBENV_DIR}/plugins" do
