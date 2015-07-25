@@ -5,6 +5,7 @@ package "bison"
 
 git MRUBY_DIR do
   repository "https://github.com/mruby/mruby.git"
+  revision node[:mruby][:version]
 end
 
 execute "Build mruby" do
