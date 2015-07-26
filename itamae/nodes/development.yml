@@ -16,7 +16,14 @@ mruby:
   mgems:
     - mruby-json
     - mruby-env
-
+h2o:
+  domain: 192.168.33.10
+  application: ikyusan-api
+  unix_sock_file_path: /var/www/ikyusan-api/current/tmp/sockets/ikyusan-api_unicorn.sock
+  document_root: /var/www
+  document_root_user: vagrant
+  log_dir: /var/log/h2o
+  run_dir: /run/h2o
 nginx:
   site_conf_template: ikyusan-api.conf.erb
   document_root: /var/www

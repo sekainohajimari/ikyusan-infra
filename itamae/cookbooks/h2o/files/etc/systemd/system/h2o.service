@@ -1,0 +1,18 @@
+[Unit]
+Description=h2o optimized HTTP server
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+PIDFile=/run/h2o/h2o.pid
+WorkingDirectory=/usr/local/share/h2o
+ExecStart=/usr/local/bin/h2o -c /usr/local/share/h2o/h2o.conf &
+ExecReload=/usr/bin/kill -HUP $MAINPID
+ExecStop=/usr/bin/kill -KILL $MAINPID
+PrivateDevices=yes
+PrivateTmp=true
+LimitNOFILE=infinity
+
+[Install]
+Alias=h2o.service
+WantedBy=multi-user.target

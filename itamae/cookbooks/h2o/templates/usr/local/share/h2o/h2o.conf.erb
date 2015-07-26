@@ -1,0 +1,16 @@
+pid-file: /run/h2o/h2o.pid
+access-log: <%= node[:h2o][:log_dir] %>/access.log
+error-log: <%= node[:h2o][:log_dir] %>/error.log
+user: nobody
+
+listen: 80
+hosts:
+  "<%= node[:h2o][:domain] %>:80":
+    paths:
+      /static:
+        file.dir: <%= node[:h2o][:document_root] %>/<%= node[:h2o][:application] %>
+      /:
+        proxy.reverse.url: http://[unix:<%= node[:h2o][:unix_sock_file_path] %>]/
+        proxy.preserve-host: ON
+    access-log: <%= node[:h2o][:log_dir] %>/<%= node[:h2o][:application] %>-access.log
+    # error-log: <%= node[:h2o][:log_dir] %>/<%= node[:h2o][:application] %>-error.log
