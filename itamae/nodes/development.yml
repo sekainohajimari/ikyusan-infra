@@ -10,6 +10,13 @@ rbenv:
   global: 2.2.2
   gems:
     - name: bundler
+    - name: mgem
+mruby:
+  version: 1.1.0
+  mgems:
+    - mruby-json
+    - mruby-env
+
 nginx:
   site_conf_template: ikyusan-api.conf.erb
   document_root: /var/www

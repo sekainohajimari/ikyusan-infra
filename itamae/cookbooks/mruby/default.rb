@@ -8,6 +8,17 @@ git MRUBY_DIR do
   revision node[:mruby][:version]
 end
 
+execute "source #{RBENV_SCRIPT} && mgem update"
+(node[:mruby][:mgems] ||= []).each do |mgem|
+  execute "mgem module install" do
+    command <<-EOS
+    source #{RBENV_SCRIPT}
+    mgem add #{mgem}
+    EOS
+    not_if "mgem list active | grep #{mgem}"
+  end
+end
+
 execute "Build mruby" do
   command <<-EOS
   source #{RBENV_SCRIPT}

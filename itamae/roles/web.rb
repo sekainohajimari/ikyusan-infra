@@ -1,6 +1,7 @@
 %w(
   env-variable
   ruby_build
+  mruby
   nokogiri-env
   nginx
   tz
