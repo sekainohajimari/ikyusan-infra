@@ -4,8 +4,11 @@ variable "key_path" {
 variable "ssh_key_name" {
   default = "sekahama"
 }
+variable "count" {
+  default = "1"
+}
 variable "ami" {
-  default = "ami-6a60b76a"
+  default = "ami-729f2f72"
 }
 variable "instance_type" {
   default = "t2.micro"

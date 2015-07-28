@@ -2,7 +2,7 @@
 # AWS Launch EC2 instance
 #
 resource "aws_instance" "web" {
-    count = 1
+    count = "${var.count}"
     instance_type = "${var.instance_type}"
     availability_zone = "${var.az}"
     ami = "${var.ami}"
