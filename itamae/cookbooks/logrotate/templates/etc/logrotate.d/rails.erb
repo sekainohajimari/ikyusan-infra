@@ -6,14 +6,12 @@
   notifempty
   copytruncate
   dateext
-  create 0644 <%= node[:nginx][:document_root_user] %> <%= node[:nginx][:document_root_user] %>
-  <% if $infra_env == 'development' %>
-    # Note: CentOS7とかだとpermisssionの制約が強くなって以下が必要
-    su root root
-  <% end %>
+  create 0644 <%= node[:h2o][:document_root_user] %> <%= node[:h2o][:document_root_user] %>
+  # Note: CentOS7とかだとpermisssionの制約が強くなって以下が必要
+  su root root
 
   lastaction
-    pid=<%= node[:nginx][:unicorn_sock] %>
+    pid=<%= node[:h2o][:unix_sock_file_path] %>
     test -s $pid && kill -USR1 "$(cat $pid)"
   endscript
 }

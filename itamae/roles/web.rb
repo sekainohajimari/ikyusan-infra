@@ -3,7 +3,7 @@
   ruby_build
   mruby
   nokogiri-env
-  nginx
+  h2o
   tz
   logrotate
 ).each do |recipe|

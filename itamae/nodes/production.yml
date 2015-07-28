@@ -9,14 +9,20 @@ rbenv:
   global: 2.2.2
   gems:
     - name: bundler
-nginx:
-  site_conf_template: ikyusan-api.conf.erb
-  document_root: /var/www
-  document_root_user: kyoko
+    - name: mgem
+mruby:
+  version: 1.1.0
+  mgems:
+    - mruby-json
+    - mruby-env
+h2o:
+  domain: ikyusan.sekahama.club
   application: ikyusan-api
-  server_name: ikyusan.sekahama.club
-  port: 80
-  unicorn_sock: /var/www/ikyusan-api/current/tmp/sockets/ikyusan-api_unicorn.sock
+  unix_sock_file_path: /var/www/ikyusan-api/current/tmp/sockets/ikyusan-api_unicorn.sock
+  document_root: /var/www/ikyusan.sekahama.club
+  document_root_user: kyoko
+  log_dir: /var/log/h2o
+  run_dir: /run/h2o
 logrotate:
-  app_log_dir: /var/www/ikyusan-api/shared/log
+  app_log_dir: /var/www/ikyusan.sekahama.club/ikyusan-api/shared/log
   rotate: 1
