@@ -8,7 +8,7 @@ hosts:
   "<%= node[:h2o][:domain] %>:80":
     paths:
       /static:
-        file.dir: <%= node[:h2o][:document_root] %>/<%= node[:h2o][:application] %>
+        file.dir: <%= node[:h2o][:document_root] %>/
       /:
         proxy.reverse.url: http://[unix:<%= node[:h2o][:unix_sock_file_path] %>]/
         proxy.preserve-host: ON

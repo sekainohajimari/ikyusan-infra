@@ -27,7 +27,7 @@ directory node[:h2o][:log_dir] do
 end
 
 directory node[:h2o][:run_dir] do
-  mode "775"
+  mode "777"
   not_if "test -d #{node[:h2o][:run_dir]}"
 end
 
