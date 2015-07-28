@@ -8,12 +8,21 @@ end
   epel-release
   mysql
   mysql-devel
-  mysql-server
-  mysql-utilities
 ).each do |pkg|
   package pkg
 end
 
-service "mysqld" do
-  action :restart
+unless node[:mysql][:client_only]
+  %w(
+    mysql
+    mysql-devel
+    mysql-server
+    mysql-utilities
+  ).each do |pkg|
+    package pkg
+  end
+
+  service "mysqld" do
+    action :restart
+  end
 end

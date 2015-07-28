@@ -1,5 +1,6 @@
 recipes:
   - web
+  - db
   - monitor
 user: kyoko
 tz: jst
@@ -26,3 +27,5 @@ h2o:
 logrotate:
   app_log_dir: /var/www/ikyusan.sekahama.club/ikyusan-api/shared/log
   rotate: 1
+mysql:
+  client_only: true
