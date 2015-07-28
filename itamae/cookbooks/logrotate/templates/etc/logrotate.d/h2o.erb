@@ -1,0 +1,12 @@
+/var/log/h2o/*log {
+  rotate <%= node[:logrotate][:rotate] %>
+  missingok
+  compress
+  notifempty
+  copytruncate
+  dateext
+  sharedscripts
+  postrotate
+    systemctl restart h2o
+  endscript
+}
