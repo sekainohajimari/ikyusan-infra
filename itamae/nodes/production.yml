@@ -19,7 +19,7 @@ mruby:
 h2o:
   domain: ikyusan.sekahama.club
   application: ikyusan-api
-  unix_sock_file_path: /var/www/ikyusan-api/current/tmp/sockets/ikyusan-api_unicorn.sock
+  unix_sock_file_path: /var/www/ikyusan.sekahama.club/ikyusan-api/current/tmp/sockets/ikyusan-api_unicorn.sock
   document_root: /var/www/ikyusan.sekahama.club
   document_root_user: kyoko
   log_dir: /var/log/h2o
