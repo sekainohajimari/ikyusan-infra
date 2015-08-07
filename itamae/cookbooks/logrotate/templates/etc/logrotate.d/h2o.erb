@@ -1,4 +1,5 @@
 /var/log/h2o/*log {
+  daily
   rotate <%= node[:logrotate][:rotate] %>
   missingok
   compress

@@ -1,5 +1,5 @@
 <%= node[:logrotate][:app_log_dir] %>/*log {
-  weekly
+  daily
   rotate <%= node[:logrotate][:rotate] %>
   missingok
   compress
