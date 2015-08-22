@@ -60,7 +60,7 @@ namespace :provisioning do
     [].tap do |result|
       ec2.describe_instances.reservations.each do |reservation|
         reservation.instances.each do |instance|
-          next unless instance.state.name = 'running'
+          break unless instance.state.name == 'running'
 
           is_target = true
           instance.tags.each do |tag|

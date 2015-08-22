@@ -8,7 +8,7 @@ variable "count" {
   default = "1"
 }
 variable "ami" {
-  default = "ami-729f2f72"
+  default = "ami-b29320b2"
 }
 variable "instance_type" {
   default = "t2.micro"

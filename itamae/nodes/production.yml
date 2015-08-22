@@ -6,8 +6,8 @@ user: kyoko
 tz: jst
 rbenv:
   versions:
-    - 2.2.2
-  global: 2.2.2
+    - 2.2.3
+  global: 2.2.3
   gems:
     - name: bundler
     - name: mgem
@@ -24,6 +24,7 @@ h2o:
   document_root_user: kyoko
   log_dir: /var/log/h2o
   run_dir: /run/h2o
+  version: 'v1.4.4'
 logrotate:
   app_log_dir: /var/www/ikyusan.sekahama.club/ikyusan-api/shared/log
   rotate: 1
